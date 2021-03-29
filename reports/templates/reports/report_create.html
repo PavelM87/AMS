@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="">
+    <a class="hover:text-blue-500" href="{% url 'reports:reports-list' %}">
+        К списку отчетов
+    </a>
+    <div class="py-5 border-t border-gray-200">
+        <h1 class="text-4xl text-gray-800">
+            ДОБАВЛЕНИЕ ОБЪЕКТА(Отчет)
+        </h1>
+    </div>
+    <form method="post" class="mt-5 bg-blue-200">
+        {% csrf_token %}
+        <p class="mt-5">{{ form.ams.label }} {{ form.ams }}</p>
+        <p class="mt-5">{{ form.team.label }} {{ form.team }}</p>
+        <p class="mt-5">{{ form.wind.label }} {{ form.wind }}</p>
+        <p class="mt-5">{{ form.weather_today.label }} {{ form.weather_today }}</p>
+        <p class="mt-5">{{ form.ground.label }} {{ form.ground }}</p>
+        <p class="mt-5">{{ form.temperature.label }} {{ form.temperature }}</p>
+        <p class="mt-5">{{ form.weather_3_days.label }} {{ form.weather_3_days }}</p>
+        <hr>
+        <table class="mt-7 table form-table table-bordered table-sm">
+                            <thead class="text-center">
+                            <tr>
+                                <th>Тип</th>
+                                <th>Высота</th>
+                                <th>Размеры</th>
+                                <th>Количество</th>
+                                <th>Производитель</th>
+                                <th>Модель</th>
+                                <th>Оператор</th>
+                                <th>Примечание</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for form_data in formset %}
+                                <tr class="item">
+                                    <td>
+                                        {{ form_data.equipment_type }}
+                                    </td>
+                                    <td>
+                                        {{ form_data.equipment_height }}
+                                    </td>
+                                    <td>
+                                    	{{ form_data.equipment_proportions }}
+                                    </td>
+                                    <td>
+                                    	{{ form_data.equipment_amount }}
+                                    </td>
+                                    <td>
+                                    	{{ form_data.equipment_manufacturer }}
+                                    </td>
+                                    <td>
+                                    	{{ form_data.equipment_model }}
+                                    </td>
+                                    <td>
+                                    	{{ form_data.equipment_operator }}
+                                    </td>
+                                    <td>
+                                    	{{ form_data.equipment_note }}
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset.prefix }}">
+
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="9"
+                                    style="border-left: none!important; border-right: none !important; border-bottom: none!important;">
+                                    <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset.prefix }}">
+                                       Add
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        {{ formset.management_form }}
+        <button type="submit" class="mt-5 w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-3 rounded-md">
+            Создать
+        </button>
+    </form>
+</div>
+{% endblock content %}
+
+{% block extra_script %}
+	<script type="text/javascript" src="{% static 'js/formset.js' %}"></script>
+{% endblock%}

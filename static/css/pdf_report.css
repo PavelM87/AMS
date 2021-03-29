@@ -1,0 +1,8 @@
+#page_1 #p1dimg1 {
+    position:absolute;top:0px;left:0px;
+    z-index:-1;width:792px;height:1111px;
+    }
+#page_1 #p1dimg1 #p1img1 {
+    width:792px;
+    height:1111px;
+    }

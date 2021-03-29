@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRM</title>
+    <link rel="stylesheet" href="{% static 'css/pdf_report/pdf_report.css' %}">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class=" w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0 bg-green-300">
+    <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">Отчет № {{ report.id }}</h1>
+    <div class="flex border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Бригада специалистов</span>
+        <span class="ml-auto text-gray-900">{{ report.team }}</span>
+    </div>
+    <p class="mb-5 text-xl text-red-800">Погодные условия</p>
+    <div class="flex border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Ветер</span>
+        <span class="ml-auto text-gray-900">{{ report.wind }}</span>
+    </div>
+    <div class="flex border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Погода в день измерений</span>
+        <span class="ml-auto text-gray-900">{{ report.weather_today }}</span>
+    </div>
+    <div class="flex border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Грунт</span>
+        <span class="ml-auto text-gray-900">{{ report.ground }}</span>
+    </div>
+    <div class="flex border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Температура</span>
+        <span class="ml-auto text-gray-900">{{ report.temperature }}</span>
+    </div>
+    <div class="flex border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Погода в последние 3 дня</span>
+        <span class="ml-auto text-gray-900">{{ report.weather_3_days }}</span>
+    </div>
+    <p class="mb-5 text-xl text-red-800">Электротехнические измерения</p>
+    <div class="flex border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Питающее напряжение СОМ</span>
+        <span class="ml-auto text-gray-900">{{ report.supply_voltage_COM }}</span>
+    </div>
+    <div class="flex border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Марка кабеля СОМ (тип слева)</span>
+        <span class="ml-auto text-gray-900">{{ report.cable_brand_type }}</span>
+    </div>
+    <div class="flex  border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Марка кабеля СОМ (сечение справа)</span>
+        <span class="ml-auto text-gray-900">{{ report.cable_brand_size }}</span>
+    </div>
+    <div class="flex  border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Молниеприемник – трос молниеприемника</span>
+        <span class="ml-auto text-gray-900">{{ report.cable_lightning_rod }}</span>
+    </div>
+    <div class="flex  border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">шина (проводник) контура заземления</span>
+        <span class="ml-auto text-gray-900">{{ report.ground_loop_bus }}</span>
+    </div>
+    <div class="flex  border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Схема АМС</span>
+        <span class="ml-auto"><img class="h-20 w-20" src="{{ report.ams_schema.url }}"></span>
+    </div>
+    <div class="flex  border-b mb-3 border-gray-300 py-2">
+        <span class="text-gray-500">Расположение на карте</span>
+        <span class="ml-auto"><img class="h-20 w-20" src="{{ report.location_on_map.url }}"></span>
+
+    </div>
+</div>
+</body>
+</html>

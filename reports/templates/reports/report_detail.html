@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="text-gray-600 body-font overflow-hidden">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap">
+      <div class="w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">Отчет</h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">Отчет № {{ report.id }}</h1>
+        <div class="flex mb-4">
+          <a href="{% url 'reports:report-detail' report.pk%}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
+              Просмотр
+          </a>
+          <a href="{% url 'reports:report-update' report.pk %}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
+              Редактировать
+          </a>
+          <a href="#" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
+              Генерировать pdf
+          </a>
+        </div>
+        <p class="mb-5 text-xl text-red-800">Специалисты</p>
+        <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500">Бригада специалистов</span>
+          <span class="ml-auto text-gray-900">{{ report.team }}</span>
+        </div>
+        <p class="mb-5 text-xl text-red-800">Погодные условия</p>
+        <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500">Ветер</span>
+          <span class="ml-auto text-gray-900">{{ report.wind }}</span>
+        </div>
+        <div class="flex border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Погода в день измерений</span>
+          <span class="ml-auto text-gray-900">{{ report.weather_today }}</span>
+        </div>
+        <div class="flex border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Грунт</span>
+          <span class="ml-auto text-gray-900">{{ report.ground }}</span>
+        </div>
+        <div class="flex border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Температура</span>
+          <span class="ml-auto text-gray-900">{{ report.temperature }}</span>
+        </div>
+        <div class="flex border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Погода в последние 3 дня</span>
+          <span class="ml-auto text-gray-900">{{ report.weather_3_days }}</span>
+        </div>
+        <p class="mb-5 text-xl text-red-800">Электротехнические измерения</p>
+        <div class="flex border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Питающее напряжение СОМ</span>
+          <span class="ml-auto text-gray-900">{{ report.supply_voltage_COM }}</span>
+        </div>
+        <div class="flex border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Марка кабеля СОМ (тип слева)</span>
+          <span class="ml-auto text-gray-900">{{ report.cable_brand_type }}</span>
+        </div>
+        <div class="flex  border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Марка кабеля СОМ (сечение справа)</span>
+          <span class="ml-auto text-gray-900">{{ report.cable_brand_size }}</span>
+        </div>
+        <div class="flex  border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Молниеприемник – трос молниеприемника</span>
+          <span class="ml-auto text-gray-900">{{ report.cable_lightning_rod }}</span>
+        </div>
+        <div class="flex  border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">шина (проводник) контура заземления</span>
+          <span class="ml-auto text-gray-900">{{ report.ground_loop_bus }}</span>
+        </div>
+        <div class="flex  border-b mb-6 border-gray-300 py-2">
+        <div class="flex  border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Схема АМС</span>
+          <img src="{{ report.ams_schema.url }}" height="200px">
+        </div>
+        <div class="flex  border-b mb-6 border-gray-300 py-2">
+          <span class="text-gray-500">Расположение на карте</span>
+          <img src="{{ report.location_on_map.url }}" height="200px">
+        </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
