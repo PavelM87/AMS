@@ -14,7 +14,7 @@
           <a href="{% url 'reports:report-update' report.pk %}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
               Редактировать
           </a>
-          <a href="#" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
+          <a href="{% url 'reports:pdf' report.pk %}" class="flex-grow text-yellow-700 border-b-2 border-indigo-500 py-2 text-lg px-1">
               Генерировать pdf
           </a>
         </div>
