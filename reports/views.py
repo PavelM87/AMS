@@ -68,7 +68,7 @@ def generate_pdf(request, *args, **kwargs):
     result = html.write_pdf()
 
     # Создание http ответа
-    pdf = html.write_pdf(stylesheets=[CSS(settings.STATIC_ROOT + '/css/pdf_report.css')])
+    pdf = html.write_pdf(stylesheets=[])
     response = HttpResponse(pdf, content_type='application/pdf;')
     response['Content-Disposition'] = 'inline; filename=report.pdf'
     response['Content-Transfer-Encoding'] = 'binary'
