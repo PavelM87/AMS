@@ -14,7 +14,7 @@
           <a href="{% url 'reports:report-update' report.pk %}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
               Редактировать
           </a>
-          <a href="#" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
+          <a href="{% url 'reports:pdf' report.pk %}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
               Генерировать pdf
           </a>
         </div>
@@ -68,11 +68,19 @@
         <div class="flex  border-b mb-6 border-gray-300 py-2">
         <div class="flex  border-b mb-6 border-gray-300 py-2">
           <span class="text-gray-500">Схема АМС</span>
-          <img src="{{ report.ams_schema.url }}" height="200px">
+          {% if report.ams_schema %}
+            <img src="{{ report.ams_schema.url }}" height="200px">
+          {% else %}
+            <p></p>
+          {% endif %}
         </div>
         <div class="flex  border-b mb-6 border-gray-300 py-2">
           <span class="text-gray-500">Расположение на карте</span>
-          <img src="{{ report.location_on_map.url }}" height="200px">
+          {% if report.location_on_map %}
+            <img src="{{ report.location_on_map.url }}" height="200px">
+          {% else %}
+            <p></p>
+          {% endif %}
         </div>
     </div>
   </div>

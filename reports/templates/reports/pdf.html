@@ -5,7 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>CRM</title>
-    <link rel="stylesheet" href="{% static 'css/pdf_report/pdf_report.css' %}">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
@@ -60,11 +59,19 @@
     </div>
     <div class="flex  border-b mb-3 border-gray-300 py-2">
         <span class="text-gray-500">Схема АМС</span>
-        <span class="ml-auto"><img class="h-20 w-20" src="{{ report.ams_schema.url }}"></span>
+        {% if report.ams_schema %}
+            <span class="ml-auto"><img class="h-20 w-20" src="{{ report.ams_schema.url }}"></span>
+        {% else %}
+            <p></p>
+        {% endif %}
     </div>
     <div class="flex  border-b mb-3 border-gray-300 py-2">
         <span class="text-gray-500">Расположение на карте</span>
-        <span class="ml-auto"><img class="h-20 w-20" src="{{ report.location_on_map.url }}"></span>
+        {% if report.location_on_map %}
+            <span class="ml-auto"><img class="h-20 w-20" src="{{ report.location_on_map.url }}"></span>
+        {% else %}
+            <p></p>
+        {% endif %}
 
     </div>
 </div>
