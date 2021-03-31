@@ -77,3 +77,26 @@ class Report(models.Model):
     def __str__(self):
         return f"Отчет № {self.id}"
 
+
+class AMSEquipment(models.Model):
+    ams = models.ForeignKey(AMS, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Объект / наряд')
+    type = models.CharField(choices=(
+            ('panel_antenna', 'панельная антенна'),
+            ('RRL_antenna', 'РРЛ антенна'),
+            ('radio_module', 'радиомодуль'),
+        ), max_length=20, default='панельная антенна', verbose_name='Тип')
+    height = models.IntegerField(null=True, blank=True, verbose_name='Высота')
+    proportions = models.IntegerField(null=True, blank=True, verbose_name='Размеры')
+    amount = models.IntegerField(null=True, blank=True, verbose_name='Количество')
+    manufacturer = models.CharField(max_length=50, blank=True, verbose_name='Производитель')
+    model = models.CharField(max_length=50, blank=True, verbose_name='Модель')
+    operator = models.ForeignKey(Operator, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Оператор')
+    note = models.CharField(max_length=100, blank=True, verbose_name='Примечание')
+
+    def __str__(self):
+        return f"Оборудование на АМС № {self.ams}"
+
+    class Meta:
+        verbose_name = "Оборудование на АМС"
+        verbose_name_plural = "Оборудование на АМС"
+        db_table = 'equipment'

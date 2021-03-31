@@ -36,31 +36,31 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for form_data in formset %}
+                            {% for equipment in formset %}
                                 <tr class="item">
                                     <td>
-                                        {{ form_data.equipment_type }}
+                                        {{ equipment.type }}
                                     </td>
                                     <td>
-                                        {{ form_data.equipment_height }}
+                                        {{ equipment.height }}
                                     </td>
                                     <td>
-                                    	{{ form_data.equipment_proportions }}
+                                    	{{ equipment.proportions }}
                                     </td>
                                     <td>
-                                    	{{ form_data.equipment_amount }}
+                                    	{{ equipment.amount }}
                                     </td>
                                     <td>
-                                    	{{ form_data.equipment_manufacturer }}
+                                    	{{ equipment.manufacturer }}
                                     </td>
                                     <td>
-                                    	{{ form_data.equipment_model }}
+                                    	{{ equipment.model }}
                                     </td>
                                     <td>
-                                    	{{ form_data.equipment_operator }}
+                                    	{{ equipment.operator }}
                                     </td>
                                     <td>
-                                    	{{ form_data.equipment_note }}
+                                    	{{ equipment.note }}
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset.prefix }}">

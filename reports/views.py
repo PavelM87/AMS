@@ -10,8 +10,8 @@ from django.views import generic
 from django.forms import modelformset_factory
 
 from crm import settings
-from .forms import ReportModelForm
-from .models import Report
+from .forms import ReportModelForm, AMSEquipmentForm
+from .models import Report, AMSEquipment
 from users.mixins import SuperuserAndLoginRequiredMixin, ModeratorAndLoginRequiredMixin
 
 
@@ -102,9 +102,9 @@ class ReportCreateView(generic.CreateView):
 
 def create(request):
     context = {}
-    MarksFormset = modelformset_factory(Report, form=ReportModelForm)
+    EquipmentFormset = modelformset_factory(AMSEquipment, form=AMSEquipmentForm)
     form = ReportModelForm(request.POST or None)
-    formset = MarksFormset(request.POST or None, queryset=Report.objects.none(), prefix='report')
+    formset = EquipmentFormset(request.POST or None, queryset=AMSEquipment.objects.none(), prefix='equipment')
     if request.method == "POST":
         if form.is_valid() and formset.is_valid():
             try:
@@ -112,8 +112,8 @@ def create(request):
                     report = form.save(commit=False)
                     report.save()
 
-                    for row in formset:
-                        data = row.save(commit=False)
+                    for equipment in formset:
+                        data = equipment.save(commit=False)
                         data.report = report
                         data.save()
             except IntegrityError:
