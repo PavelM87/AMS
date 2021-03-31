@@ -104,9 +104,13 @@ def create(request):
     context = {}
     EquipmentFormset = modelformset_factory(AMSEquipment, form=AMSEquipmentForm)
     form = ReportModelForm(request.POST or None)
-    formset = EquipmentFormset(request.POST or None, queryset=AMSEquipment.objects.none(), prefix='equipment')
+    formset = EquipmentFormset(request.POST or None, queryset=AMSEquipment.objects.none(), prefix='reports_amsequipment')
     if request.method == "POST":
+        print('in post')
+        print(form.errors)
+        print(formset.is_valid)
         if form.is_valid() and formset.is_valid():
+            print('valid')
             try:
                 with transaction.atomic():
                     report = form.save(commit=False)

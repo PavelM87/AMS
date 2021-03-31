@@ -58,19 +58,19 @@ class Report(models.Model):
             ('metal_strip', 'металлическая полоса'),
             ('metal_rope', 'металлический трос'),
         ), max_length=20, default='металлическая полоса', verbose_name='шина (проводник) контура заземления')
-    # Оборудование на АМС / Проактуализируйте
-    equipment_type = models.CharField(choices=(
-            ('panel_antenna', 'панельная антенна'),
-            ('RRL_antenna', 'РРЛ антенна'),
-            ('radio_module', 'радиомодуль'),
-        ), max_length=20, default='панельная антенна', verbose_name='Тип')
-    equipment_height = models.IntegerField(null=True, blank=True)
-    equipment_proportions = models.IntegerField(null=True, blank=True)
-    equipment_amount = models.IntegerField(null=True, blank=True)
-    equipment_manufacturer = models.CharField(max_length=50, blank=True)
-    equipment_model = models.CharField(max_length=50, blank=True)
-    equipment_operator = models.ForeignKey(Operator, null=True, blank=True, on_delete=models.SET_NULL)
-    equipment_note = models.CharField(max_length=100, blank=True)
+    # # Оборудование на АМС / Проактуализируйте
+    # equipment_type = models.CharField(choices=(
+    #         ('panel_antenna', 'панельная антенна'),
+    #         ('RRL_antenna', 'РРЛ антенна'),
+    #         ('radio_module', 'радиомодуль'),
+    #     ), max_length=20, default='панельная антенна', verbose_name='Тип')
+    # equipment_height = models.IntegerField(null=True, blank=True)
+    # equipment_proportions = models.IntegerField(null=True, blank=True)
+    # equipment_amount = models.IntegerField(null=True, blank=True)
+    # equipment_manufacturer = models.CharField(max_length=50, blank=True)
+    # equipment_model = models.CharField(max_length=50, blank=True)
+    # equipment_operator = models.ForeignKey(Operator, null=True, blank=True, on_delete=models.SET_NULL)
+    # equipment_note = models.CharField(max_length=100, blank=True)
     ams_schema = models.ImageField(blank=True)
     location_on_map = models.ImageField(blank=True)
 
@@ -99,4 +99,4 @@ class AMSEquipment(models.Model):
     class Meta:
         verbose_name = "Оборудование на АМС"
         verbose_name_plural = "Оборудование на АМС"
-        db_table = 'equipment'
+        db_table = 'reports_amsequipment'
