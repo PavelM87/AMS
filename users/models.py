@@ -37,7 +37,7 @@ class Team(models.Model):
     member = models.ManyToManyField(CustomUser)
 
     def __str__(self):
-        return f"{self.member.all()[0].username}, {self.member.all()[1].username}"
+        return f"Бригада № {self.id}"
 
     class Meta:
         verbose_name = "Бригада"
