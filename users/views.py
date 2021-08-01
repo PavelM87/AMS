@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from .models import CustomUser, Team
 from .forms import UserModelForm, TeamsModelForm
-from users.mixins import SuperuserAndLoginRequiredMixin, ModeratorAndLoginRequiredMixin
+from users.mixins import SuperuserAndLoginRequiredMixin, GuestMixin
 
 
 class LandingPageView(View):
@@ -40,7 +40,7 @@ class UserDetailView(SuperuserAndLoginRequiredMixin, generic.DetailView):
         return context
 
 
-class UserCreateView(SuperuserAndLoginRequiredMixin, generic.CreateView):
+class UserCreateView(SuperuserAndLoginRequiredMixin, GuestMixin, generic.CreateView):
     template_name = "users/user_create.html"
     form_class = UserModelForm
 
@@ -48,7 +48,7 @@ class UserCreateView(SuperuserAndLoginRequiredMixin, generic.CreateView):
         return reverse("users:users-list")
 
 
-class UserUpdateView(SuperuserAndLoginRequiredMixin, generic.UpdateView):
+class UserUpdateView(SuperuserAndLoginRequiredMixin, GuestMixin, generic.UpdateView):
     template_name = "users/user_update.html"
     queryset = CustomUser.objects.all()
     form_class = UserModelForm
@@ -57,7 +57,7 @@ class UserUpdateView(SuperuserAndLoginRequiredMixin, generic.UpdateView):
         return reverse("users:users-list")
 
 
-class UserDeleteView(SuperuserAndLoginRequiredMixin, generic.DeleteView):
+class UserDeleteView(SuperuserAndLoginRequiredMixin, GuestMixin, generic.DeleteView):
     template_name = "users/user_delete.html"
     queryset = CustomUser.objects.all()
 

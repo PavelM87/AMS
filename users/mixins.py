@@ -17,3 +17,9 @@ class ModeratorAndLoginRequiredMixin(LoginRequiredMixin):
         if not request.user.is_authenticated or request.user.role not in('MOD', 'SUP'):
             return HttpResponse("Недостаточно прав доступа")
         return super().dispatch(request, *args, **kwargs)
+
+class GuestMixin(LoginRequiredMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.email == 'guest@test.com':
+            return HttpResponse("Недостаточно прав доступа")
+        return super().dispatch(request, *args, **kwargs)

@@ -4,7 +4,7 @@ from django.views import generic
 from .forms import OrderModelForm
 from .models import Order
 from .filters import OrderAddressFilter
-from users.mixins import SuperuserAndLoginRequiredMixin, ModeratorAndLoginRequiredMixin
+from users.mixins import SuperuserAndLoginRequiredMixin, GuestMixin, ModeratorAndLoginRequiredMixin
 
 
 class OrderListView(SuperuserAndLoginRequiredMixin, generic.ListView):
@@ -40,7 +40,7 @@ class OrderUpdateView(SuperuserAndLoginRequiredMixin, generic.UpdateView):
         return reverse("orders:orders-list")
 
 
-class OrderDeleteView(SuperuserAndLoginRequiredMixin, generic.DeleteView):
+class OrderDeleteView(SuperuserAndLoginRequiredMixin, GuestMixin, generic.DeleteView):
     template_name = "orders/order_delete.html"
     queryset = Order.objects.all()
 
