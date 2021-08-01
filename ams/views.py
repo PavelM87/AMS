@@ -3,7 +3,7 @@ from django.views import generic
 
 from .forms import AMSModelForm
 from .models import AMS
-from users.mixins import SuperuserAndLoginRequiredMixin, ModeratorAndLoginRequiredMixin
+from users.mixins import SuperuserAndLoginRequiredMixin, GuestAccessMixin, ModeratorAndLoginRequiredMixin
 
 
 class AMSListView(SuperuserAndLoginRequiredMixin, generic.ListView):
@@ -35,7 +35,7 @@ class AMSUpdateView(SuperuserAndLoginRequiredMixin, generic.UpdateView):
         return reverse("ams:ams-list")
 
 
-class AMSDeleteView(SuperuserAndLoginRequiredMixin, generic.DeleteView):
+class AMSDeleteView(SuperuserAndLoginRequiredMixin, GuestAccessMixin, generic.DeleteView):
     template_name = "ams/ams_delete.html"
     queryset = AMS.objects.all()
 
