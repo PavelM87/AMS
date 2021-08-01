@@ -12,7 +12,7 @@ from django.forms import modelformset_factory
 from crm import settings
 from .forms import ReportModelForm
 from .models import Report
-from users.mixins import SuperuserAndLoginRequiredMixin, ModeratorAndLoginRequiredMixin
+from users.mixins import SuperuserAndLoginRequiredMixin, ModeratorAndLoginRequiredMixin, GuestAccessMixin
 
 
 ######################################
@@ -135,7 +135,7 @@ class ReportUpdateView(ModeratorAndLoginRequiredMixin, generic.UpdateView):
         return reverse("reports:reports-list")
 
 
-class ReportDeleteView(ModeratorAndLoginRequiredMixin, generic.DeleteView):
+class ReportDeleteView(ModeratorAndLoginRequiredMixin, GuestAccessMixin, generic.DeleteView):
     template_name = "reports/report_delete.html"
     queryset = Report.objects.all()
 
